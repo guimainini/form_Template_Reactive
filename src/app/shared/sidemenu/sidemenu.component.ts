@@ -26,9 +26,24 @@ export class SidemenuComponent   {
       texto : 'Swiches',
       ruta  : './template/swiches'
     }
+  ];
+
+  reactiveMenu: MenuItem[] = [
+    {
+      texto : 'Basicos',
+      ruta  : './reactive/basicos'
+    },
+    {
+      texto : 'Dinamicos',
+      ruta  : './reactive/dinamicos'
+    },
+    {
+      texto : 'Swiches',
+      ruta  : './reactive/swiches'
+    }
+  ];
 
 
-  ]
   
 
 }
