@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ClassGetter } from '@angular/compiler/src/output/output_ast';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-dinamicos',
@@ -8,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DinamicosComponent implements OnInit {
 
+
+ 
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  save(){
+    console.log('Form posteado');
+    
+  }
+
 
 }

@@ -6,13 +6,17 @@ import { TemplateRoutingModule } from './template-routing.module';
 import { BasicosComponent } from './basicos/basicos.component';
 import { DinamicosComponent } from './dinamicos/dinamicos.component';
 import { SwichesComponent } from './swiches/swiches.component';
+import { CustomMinDirective } from './directuves/custom-min.directive';
 
 
 @NgModule({
   declarations: [
     BasicosComponent, 
     DinamicosComponent, 
-    SwichesComponent
+    SwichesComponent,
+
+
+    CustomMinDirective
   ],
   imports: [
     CommonModule,

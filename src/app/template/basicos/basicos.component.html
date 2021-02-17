@@ -10,7 +10,7 @@
                 <label class="col-sm-3 col-form-label">Producto</label>
                 <div class="col-sm-9">
 
-                    <input minlength="3" required ngModel name="produc" type="text" class="form-control" placeholder="Nombre del producto">
+                    <input minlength="3" name="produc" [ngModel]=initForm.produc required type="text" class="form-control" placeholder="Nombre del producto">
 
                     <span *ngIf="validName()" class="form-text text-danger">
                                 Debe de ser de 3 letras
@@ -22,7 +22,13 @@
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Precio</label>
                 <div class="col-sm-9">
-                    <input ngModel name="price" type="number" class="form-control" placeholder="Precio del producto">
+
+                    <input min="0" [ngModel]=initForm.price name="price" type="number" class="form-control" placeholder="Precio del producto">
+
+                    <span *ngIf="validPrice()" class="form-text text-danger">
+                        El precio debe de ser 0 o mayor
+                    </span>
+
 
                 </div>
             </div>
@@ -30,14 +36,14 @@
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Existencias</label>
                 <div class="col-sm-9">
-                    <input ngModel name="stocks" type="number" class="form-control" placeholder="Existencias del producto">
+                    <input required customMin [minimo]="0" [ngModel]=initForm.stocks name="stocks" type="number" class="form-control" placeholder="Existencias del producto">
 
                 </div>
             </div>
 
             <div class="row">
                 <div class="col">
-                    <button type="submit" class="btn btn-primary float-end">Guardar</button>
+                    <button [disabled]="miForm.invalid" type="submit" class="btn btn-primary float-end">Guardar</button>
                 </div>
             </div>
 
@@ -60,5 +66,8 @@
 
         <span>Value</span>
         <pre>{{miForm.value | json}}</pre>
+
+        <span>CustomDirective</span>
+        <pre>{{miForm.controls.stocks?.errors | json}}</pre>
     </div>
 </div>
