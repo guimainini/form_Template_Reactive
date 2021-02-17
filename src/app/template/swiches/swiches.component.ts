@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-swiches',
@@ -6,11 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class SwichesComponent implements OnInit {
+export class SwichesComponent   {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  person = {
+    gender: 'F',
+    notify: true,
   }
+  terminos: boolean = false;
+
+  
+
 
 }
