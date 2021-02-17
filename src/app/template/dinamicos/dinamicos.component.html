@@ -13,7 +13,7 @@
             <input 
                 placeholder="Nombre de la persona"
                 class="form-control"
-                ngModel
+                [ngModel]="person.name"
                 required
                 name="name">
             <span 
@@ -32,10 +32,14 @@
             <div class="input-group mt-2">
                 <input 
                     placeholder="Agregar Jugar favorita"
-                    class="form-control">
+                    class="form-control"
+                    [(ngModel)]="nuevoJuego"
+                    name="nuevoJuego"
+                    (keyup.enter)="agregarJuego()">
                 <button  
                     class="btn btn-outline-primary" 
-                    type="button">
+                    type="button"
+                    (click)="agregarJuego()">
                     Agregar
                 </button>
             </div>
@@ -47,7 +51,18 @@
         <label class="col-sm-3 col-form-label" >Favoritos</label>
         <div class="col-sm-9">
             
-            <input class="form-control mb-1">
+            <div class="input-group mt-1" *ngFor="let game of person.favorite; let i = index" >
+                <input 
+                [(ngModel)]="game.name"
+                name="favorito_{{i}}"
+                class="form-control "
+                required>
+                <button class="btn btn-outline-danger" type="button" (click)="eliminar(i)">
+                    Eliminar
+                </button>
+            </div>
+                
+
         
         </div>
     </div>
@@ -60,12 +75,13 @@
            type="button" 
            (click)=save()
            class="btn btn-primary float-end mt-2"
-           [disabled]="miForm.invalid"
-
-           >
-           Guardas</button>
+           [disabled]="miForm.invalid">
+           Guardar</button>
 
         </div>
     </div>
 
 </form>
+
+<span>Persona</span>
+<pre>{{ person | json }}</pre>
