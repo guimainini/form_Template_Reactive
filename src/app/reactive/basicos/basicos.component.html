@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col">
 
-        <form autocomplete="off" [formGroup]="miForm">
+        <form (ngSubmit)="save()" autocomplete="off" [formGroup]="miForm">
 
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Producto</label>
@@ -17,7 +17,8 @@
                         placeholder="Nombre del producto"
                         formControlName='name'>
 
-                    <span class="form-text text-danger">
+                    <span class="form-text text-danger"
+                          *ngIf="validField('name')">
                                 Debe de ser de 3 letras
                     </span>
 
@@ -30,9 +31,11 @@
 
                     <input type="number" 
                            class="form-control" 
+                           formControlName='price'
                            placeholder="Precio del producto">
 
-                    <span class="form-text text-danger">
+                    <span class="form-text text-danger"
+                          *ngIf="validField('price')">
                         El precio debe de ser 0 o mayor
                     </span>
 
@@ -44,8 +47,13 @@
                 <label class="col-sm-3 col-form-label">Existencias</label>
                 <div class="col-sm-9">
                     <input type="number" 
-                           class="form-control" 
+                           class="form-control"
+                           formControlName='stocks' 
                            placeholder="Existencias del producto">
+                    <span class="form-text text-danger"
+                          *ngIf="validField('stocks')">
+                          El stocks deben de ser 0 o mayor
+                    </span>
 
                 </div>
             </div>
@@ -53,8 +61,9 @@
             <div class="row">
                 <div class="col">
                     <button type="submit" 
-                            class="btn btn-primary 
-                            float-end">Guardar</button>
+                            class="btn btn-primary float-end"
+                            
+                            >Guardar</button>
                 </div>
             </div>
 
@@ -77,6 +86,9 @@
 
         <span>Value</span>
         <pre>{{miForm.value | json}}</pre>
+        
+        <span>Precio</span>
+        <pre>{{miForm.controls.price.errors | json}}</pre>
 
     </div>
 </div>
