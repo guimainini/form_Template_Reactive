@@ -2,7 +2,9 @@
 
 
 <form 
-autocomplete="off"
+    autocomplete="off"
+    [formGroup]="miForm"
+    (ngSubmit)="save()"
     >
     <!-- Nombre -->
     <div  class="mb-3" class="row">
@@ -11,9 +13,11 @@ autocomplete="off"
             <input 
                 placeholder="Nombre de la persona"
                 class="form-control"
+                formControlName='name'
                 >
             <span 
-                class="form-text text-danger">
+                class="form-text text-danger"
+                *ngIf="validField('name')">
                 Este campo es obligatorio
             </span>
         </div>
@@ -26,14 +30,15 @@ autocomplete="off"
 
             <div class="input-group mt-2">
                 <input 
-                    placeholder="Agregar Jugar favorita"
+                    placeholder="Agregar favorito"
                     class="form-control"
-                    
+                    [formControl]="newFavority"
+                    (keyup.enter)="addFavority()"
                     >
                 <button  
                     class="btn btn-outline-primary" 
                     type="button"
-                    
+                    (click)="addFavority()"
                     >
                     Agregar
                 </button>
@@ -44,19 +49,22 @@ autocomplete="off"
     <!-- Lista de Juegos Favoritos -->
     <div  class="mb-3" class="row mt-2">
         <label class="col-sm-3 col-form-label" >Favoritos</label>
-        <div class="col-sm-9">
+        <div class="col-sm-9" formArrayName='favority'>
             
-            <!--<div class="input-group mt-1" *ngFor="let game of person.favorite; let i = index" >
+            <div class="input-group mb-1"
+            *ngFor="let favority of favoritosArr.controls; let i = index">
                 <input 
-                    class="form-control ">
+                    class="form-control "
+                    [formControlName]="i">
 
                 <button 
                     class="btn btn-outline-danger" 
                     type="button" 
-                    (click)="a=1">
+                    (click)="delete(i)"
+                    >
                     Eliminar
                 </button>
-            </div>-->
+            </div>
                 
 
         
@@ -69,7 +77,7 @@ autocomplete="off"
 
            <button 
            type="button" 
-           
+           (click)="save()"
            class="btn btn-primary float-end mt-2"
            >
            Guardar</button>
@@ -79,5 +87,17 @@ autocomplete="off"
 
 </form>
 
+<span>Valid</span>
+<pre>{{miForm.valid}}</pre>
+<br>
+
+<span>Value</span>
+<pre>{{miForm.value | json}}</pre>
+<br>
 <!-- <span>Persona</span>
 <pre>{{ person | json }}</pre> -->
+
+<span>Agregar Juego</span>
+<pre>{{ newFavority.valid | json}}</pre>
+<pre>{{ newFavority.value | json}}</pre>
+<br>
