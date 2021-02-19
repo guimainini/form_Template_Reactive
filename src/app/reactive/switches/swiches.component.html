@@ -1,7 +1,7 @@
 <h2>Template: Switches</h2>
 <hr>
 
-<form >
+<form [formGroup]="miForm" (ngSubmit)="save()">
 
     <!-- Radio -->
     <div class="row mb-3">
@@ -13,8 +13,8 @@
                     class="form-check-input" 
                     type="radio"
                     value="M" 
+                    formControlName="gender"
                     
-                    name="radioGender" 
                     id="radioMale"
                     >
                 <label class="form-check-label" for="flexRadioDefault1">
@@ -26,8 +26,8 @@
                     class="form-check-input" 
                     type="radio"
                     value="F"
+                    formControlName="gender"
                     
-                    name="radioGender" 
                     id="radioFeminine"
                     >
                 <label class="form-check-label" for="flexRadioDefault2">
@@ -49,7 +49,7 @@
                 <input 
                     class="form-check-input" 
                     type="checkbox" 
-                   
+                   formControlName="notify"
                     id="flexSwitchCheckChecked">
                 <label class="form-check-label" for="flexSwitchCheckChecked">Quiero recibir notificaciones</label>
             </div>
@@ -67,7 +67,7 @@
                     class="form-check-input" 
                     type="checkbox" 
                     id="defaultCheck1"
-                    
+                    formControlName="condicion"
                     
                     >
                     
@@ -81,15 +81,16 @@
     <!-- Boton Submit -->
     <div class="row">
         <div class="col">
-            <button class="btn btn-primary float-end">
+            <button class="btn btn-primary float-end"
+                    type="submit">
                 Guardar
             </button>
         </div>
     </div>
 </form>
 
-<!-- <h5>Valor del formulario</h5>
-<pre>{{ MiForm.value | json }}</pre>
+<h5>Valor del formulario</h5>
+<pre>{{ miForm.value | json }}</pre>
 <br>
 
 <h5>Persona</h5>
@@ -97,7 +98,7 @@
 <br>
 
 <h5>Valid</h5>
-<pre>{{ MiForm.valid }}</pre>
+<pre>{{ miForm.valid }}</pre>
 
 <h5>Terminos</h5>
-<pre>{{ MiForm.controls?.terminos?.errors | json}}</pre> -->
+<pre>{{ miForm.controls?.terminos?.errors | json}}</pre> 
